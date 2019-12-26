@@ -3,14 +3,83 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"app-plus": {
+					"titleNView" : {
+						"backgroundColor": "#FFFFFF",
+						"searchInput": {
+							"borderRadius": "4px",
+							"placeholder": "请输入内容",
+							"backgroundColor": "#F7F7F7",
+							"disabled": true
+						},
+						"buttons": [
+							{
+								"color": "#f0e798",
+								"float": "left",
+								"fontSize": "26px",
+								"fontSrc": "/static/iconfont/iconfont.ttf",
+								"text": "\ue63c"
+							},
+							{
+								"color": "#000000",
+								"float": "right",
+								"fontSize": "26px",
+								"fontSrc": "/static/iconfont/iconfont.ttf",
+								"text": "\ue666"
+							}
+						]
+					}
+				}
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/dynamic/dynamic",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/news/news",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personal/personal",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTextStyle": "black",	
+		"navigationBarTitleText": "My_uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#C8C7CC",
+		"selectedColor":"#f0e798",
+		"backgroundColor": "#FFFFFF",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/tabBar/index.png",
+				"selectedIconPath": "static/tabBar/indexed.png"
+			},
+			{
+				"pagePath": "pages/dynamic/dynamic",
+				"text": "动态",
+				"iconPath": "static/tabBar/dynamic.png",
+				"selectedIconPath": "static/tabBar/dynamiced.png"
+			},
+			{
+				"pagePath": "pages/news/news",
+				"text": "消息",
+				"iconPath": "static/tabBar/news.png",
+				"selectedIconPath": "static/tabBar/newsed.png"
+			},
+			{
+				"pagePath": "pages/personal/personal",
+				"text": "我的",
+				"iconPath": "static/tabBar/personal.png",
+				"selectedIconPath": "static/tabBar/personaled.png"
+			}
+		]
 	}
 }
