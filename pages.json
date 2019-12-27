@@ -1,7 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/tabbar/index/index",
 			"style": {
 				"app-plus": {
 					"titleNView" : {
@@ -33,15 +33,15 @@
 			}
 		}
 	    ,{
-            "path" : "pages/dynamic/dynamic",
+            "path" : "pages/tabbar/dynamic/dynamic",
             "style" : {}
         }
         ,{
-            "path" : "pages/news/news",
+            "path" : "pages/tabbar/news/news",
             "style" : {}
         }
         ,{
-            "path" : "pages/personal/personal",
+            "path" : "pages/tabbar/personal/personal",
             "style" : {}
         }
     ],
@@ -57,25 +57,25 @@
 		"backgroundColor": "#FFFFFF",
 		"list": [
 			{
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/tabbar/index/index",
 				"text": "首页",
 				"iconPath": "static/tabBar/index.png",
 				"selectedIconPath": "static/tabBar/indexed.png"
 			},
 			{
-				"pagePath": "pages/dynamic/dynamic",
+				"pagePath": "pages/tabbar/dynamic/dynamic",
 				"text": "动态",
 				"iconPath": "static/tabBar/dynamic.png",
 				"selectedIconPath": "static/tabBar/dynamiced.png"
 			},
 			{
-				"pagePath": "pages/news/news",
+				"pagePath": "pages/tabbar/news/news",
 				"text": "消息",
 				"iconPath": "static/tabBar/news.png",
 				"selectedIconPath": "static/tabBar/newsed.png"
 			},
 			{
-				"pagePath": "pages/personal/personal",
+				"pagePath": "pages/tabbar/personal/personal",
 				"text": "我的",
 				"iconPath": "static/tabBar/personal.png",
 				"selectedIconPath": "static/tabBar/personaled.png"
