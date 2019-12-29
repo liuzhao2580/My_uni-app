@@ -6,10 +6,13 @@
 		<view class="uni-tab-bar">
 			<swiper :current="tabIndex" class="swiper-box" :style="{height: swiper_Height + 'px'}" @change="swiper_change">
 				<swiper-item v-for="(items,index) in newsList" :key="index">
-					<scroll-view scroll-y class="list">
+					<scroll-view scroll-y class="list" @scrolltolower="load_More(index)">
+						<!-- 内容 -->
 						<block v-for="(item,index1) in items.list" :key="index1">
 							<indexList :item="item" :index="index1"/>
 						</block>
+						<!-- 上拉加载更多 -->
+						<loadMore :loadText="items.loadText"/>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
@@ -20,10 +23,12 @@
 <script>
 	import indexList from "../../../components/tabbar/index/index-list.vue"
 	import swiperTab from "../../../components/common/swiper-tab.vue"
+	import loadMore from "../../../components/common/load-more.vue"
 	export default {
 		components: {
 			indexList,
-			swiperTab
+			swiperTab,
+			loadMore
 		},
 		data() {
 			return {
@@ -62,6 +67,7 @@
 				 */
 				newsList: [
 					{
+						loadText: "上拉加载更多",
 						list : [
 							{
 								avtar_image: "/static/images/avtar-1.jpg",
@@ -98,6 +104,7 @@
 						]
 					},
 					{
+						loadText: "上拉加载更多",
 						list : [
 							{
 								avtar_image: "/static/images/avtar-1.jpg",
@@ -116,10 +123,18 @@
 							}
 						]
 					},
-					{},
-					{},
-					{},
-					{}
+					{
+						loadText: "上拉加载更多",
+					},
+					{
+						loadText: "上拉加载更多",
+					},
+					{
+						loadText: "上拉加载更多",
+					},
+					{
+						loadText: "上拉加载更多",
+					}
 				]
 			}
 		},
@@ -141,6 +156,52 @@
 			// 接收 swiperTab 组件点击的时候传递的参数
 			tabber_tap(index) {
 				this.tabIndex = index
+			},
+			// 上拉加载更多
+			load_More(index) {
+				let loadText = this.newsList[index].loadText
+				if(loadText != "上拉加载更多") return
+				this.newsList[index].loadText = "加载中..."
+				setTimeout(()=> {
+					let newList = [
+						{
+							avtar_image: "/static/images/avtar-1.jpg",
+							avtar_name: "小火车",
+							is_focus: false,  // 是否关注过 true :关注  false: 未关注
+							detele_title: "小火车况且况且",
+							detele_image: "/static/images/detele-1.jpg",
+							type: "image",
+							evaluate_num: {
+								index: 0,
+								good_num: 20,
+								bad_num: 2
+							},
+							new_num: 20,
+							share_num: 10
+						},
+						{
+							avtar_image: "/static/images/avtar.jpg",
+							avtar_name: "小火车",
+							is_focus: true,  // 是否关注过 true :关注  false: 未关注
+							detele_title: "小火车况且况且",
+							detele_image: "/static/images/detele-2.jpg",
+							type: "video",
+							play_num: "20W",
+							play_long: "2:47",
+							evaluate_num: {
+								index: 1,
+								good_num: 200,
+								bad_num: 2
+							},
+							new_num: 20,
+							share_num: 10
+						}
+					]
+					newList.forEach((item) => {
+						this.newsList[index].list.push(item)
+					})
+					this.newsList[index].loadText = "上拉加载更多"
+				}, 1000)
 			}
 		}
 	}
@@ -149,6 +210,5 @@
 <style lang="scss">
 	.index {
 		padding-top: 20upx;
-		
 	}
 </style>

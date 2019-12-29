@@ -10,9 +10,9 @@
 				</view>
 				<!-- 关注 和 关闭 -->
 				<view class="focus-box">
-					<text class="focus" v-if="!item.is_focus">
-						<text class="iconfont icon-jia"></text>
-						<text>关注</text>
+					<text class="focus" @tap="focusChange(item.is_focus)">
+						<text :class="[{'icon-jia': !item.is_focus},{'icon-duigou': item.is_focus},'iconfont']"></text>
+						<text>{{item.is_focus?'已关注':'关注'}}</text>
 					</text>
 					<!-- 关闭 -->
 					<text class="iconfont icon-error"></text>
@@ -34,10 +34,10 @@
 			<view class="detele-bottom uni-flex">
 				<!-- 评价 -->
 				<view class="bottom-evaluate">
-					<text :class="[{'active': item.evaluate_num.index == 1},'iconfont icon-weixiao']">
+					<text :class="[{'active': item.evaluate_num.index == 1},'iconfont icon-weixiao']" @tap="evaluate('good')">
 						<text>{{item.evaluate_num.good_num}}</text>
 					</text>
-					<text :class="[{'active': item.evaluate_num.index == 2},'iconfont icon-ku']">
+					<text :class="[{'active': item.evaluate_num.index == 2},'iconfont icon-ku']" @tap="evaluate('bad')">
 						<text>{{item.evaluate_num.bad_num}}</text>
 					</text>
 				</view>
@@ -64,6 +64,33 @@
 			},
 			index: {
 				default: Number
+			}
+		},
+		methods: {
+			// 关注点击事件
+			focusChange(flag){
+				this.item.is_focus = !flag
+			},
+			// 赞踩的点击事件
+			evaluate(type) {
+				switch(type) {
+					case "good" :
+						if(this.item.evaluate_num.index == 1 ) return
+						this.item.evaluate_num.good_num++
+						if(this.item.evaluate_num.index == 2 ) {
+							this.item.evaluate_num.bad_num--
+						}
+						this.item.evaluate_num.index = 1
+						break;
+					case "bad" :
+						if(this.item.evaluate_num.index == 2 ) return
+						this.item.evaluate_num.bad_num++
+						if(this.item.evaluate_num.index == 1 ) {
+							this.item.evaluate_num.good_num--
+						}
+						this.item.evaluate_num.index = 2
+						break;
+				}
 			}
 		}
 	}

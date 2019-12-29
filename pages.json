@@ -4,6 +4,7 @@
 			"path": "pages/tabbar/index/index",
 			"style": {
 				"app-plus": {
+					"scrollIndicator": "none", // 隐藏滚动条
 					"titleNView" : {
 						"backgroundColor": "#FFFFFF",
 						"searchInput": {
@@ -28,8 +29,7 @@
 								"text": "\ue666"
 							}
 						]
-					},
-					"scrollIndicator": "none"
+					}
 				}
 			}
 		}
