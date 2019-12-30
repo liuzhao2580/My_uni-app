@@ -45,6 +45,42 @@
             "path" : "pages/tabbar/personal/personal",
             "style" : {}
         }
+        ,{
+            "path" : "pages/search/search",
+            "style" : {
+				"app-plus": {
+					"scrollIndicator": "none", // 隐藏滚动条
+					"bounce":"none",
+					"titleNView" : {
+						"autoBackButton": false,
+						"searchInput": {
+							"autoFocus": true,
+							"align": "left",
+							"borderRadius": "4px",
+							"placeholder": "请输入内容",
+							"backgroundColor": "#F7F7F7",
+							"disabled": false
+						},
+						"buttons": [
+							{
+								"color": "#000000",
+								"float": "right",
+								"fontSize": "16px",
+								"text": "取消"
+							}
+						]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/publisharticle/publish-article",
+            "style" : {
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",	

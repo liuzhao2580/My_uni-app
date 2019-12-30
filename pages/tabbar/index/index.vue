@@ -7,12 +7,17 @@
 			<swiper :current="tabIndex" class="swiper-box" :style="{height: swiper_Height + 'px'}" @change="swiper_change">
 				<swiper-item v-for="(items,index) in newsList" :key="index">
 					<scroll-view scroll-y class="list" @scrolltolower="load_More(index)">
-						<!-- 内容 -->
-						<block v-for="(item,index1) in items.list" :key="index1">
-							<indexList :item="item" :index="index1"/>
-						</block>
-						<!-- 上拉加载更多 -->
-						<loadMore :loadText="items.loadText"/>
+						<template v-if="items.list.length">
+							<!-- 内容 -->
+							<block v-for="(item,index1) in items.list" :key="index1">
+								<indexList :item="item" :index="index1"/>
+							</block>
+							<!-- 上拉加载更多 -->
+							<loadMore :loadText="items.loadText"/>
+						</template>
+						<template v-else>
+							<noThing />
+						</template>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
@@ -24,11 +29,13 @@
 	import indexList from "../../../components/tabbar/index/index-list.vue"
 	import swiperTab from "../../../components/common/swiper-tab.vue"
 	import loadMore from "../../../components/common/load-more.vue"
+	import noThing from "../../../components/common/no-thing.vue"
 	export default {
 		components: {
 			indexList,
 			swiperTab,
-			loadMore
+			loadMore,
+			noThing
 		},
 		data() {
 			return {
@@ -125,15 +132,19 @@
 					},
 					{
 						loadText: "上拉加载更多",
+						list: []
 					},
 					{
 						loadText: "上拉加载更多",
+						list: []
 					},
 					{
 						loadText: "上拉加载更多",
+						list: []
 					},
 					{
 						loadText: "上拉加载更多",
+						list: []
 					}
 				]
 			}
@@ -146,6 +157,27 @@
 			        this.swiper_Height = height
 			    }
 			});
+		},
+		// 监听原生标题栏搜索输入框的点击事件
+		onNavigationBarSearchInputClicked() {
+			uni.navigateTo({
+				url: "../../search/search"
+			})
+		},
+		// 监听原生标题栏按钮点击事件
+		onNavigationBarButtonTap(e) {
+			switch(e.index) {
+				// 点击签到
+				case 0 :
+				
+					break;
+				// 点击发布文章
+				case 1 :
+					uni.navigateTo({
+						url: "../../publisharticle/publish-article"
+					})
+					break;
+			}
 		},
 		methods: {
 			// 内容区域的滑动事件
