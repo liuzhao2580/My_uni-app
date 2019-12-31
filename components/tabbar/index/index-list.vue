@@ -10,10 +10,10 @@
 				</view>
 				<!-- 关注 和 关闭 -->
 				<view class="focus-box">
-					<text class="focus" @tap="focusChange(item.is_focus)">
+					<view class="focus" @tap="focusChange(item.is_focus)">
 						<text :class="[{'icon-jia': !item.is_focus},{'icon-duigou': item.is_focus},'iconfont']"></text>
 						<text>{{item.is_focus?'已关注':'关注'}}</text>
-					</text>
+					</view>
 					<!-- 关闭 -->
 					<text class="iconfont icon-error"></text>
 				</view>
@@ -128,6 +128,7 @@
 					background-color: #f4f4f4;
 					margin-right: 20upx;
 					color: #2c2c2c;
+					display: inline-block;
 					.iconfont {
 						color: #2c2c2c;
 						margin-right: 10upx;

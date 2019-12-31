@@ -153,7 +153,7 @@
 			uni.getSystemInfo({
 			    success: (res) => {
 					// 用来计算 当前屏幕的高度
-					let height = res.windowHeight - uni.upx2px(100)
+					let height = res.windowHeight - uni.upx2px(100) - 1
 			        this.swiper_Height = height
 			    }
 			});
@@ -240,7 +240,4 @@
 </script>
 
 <style lang="scss">
-	.index {
-		padding-top: 20upx;
-	}
 </style>

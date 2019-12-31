@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-tab-bar">
-		<scroll-view class="uni-swiper-tab" scroll-x :show-scrollbar="false">
+		<scroll-view class="uni-swiper-tab" scroll-x>
 			<view v-for="(tab,index) in tabBars" :key="tab.id" class="swiper-tab-list" @tap="tabber_tap(index)">
 				<view class="uni-tab-item-title" :class=" tabIndex == index ? 'active' : ''">{{tab.name}}</view>
 			</view>
