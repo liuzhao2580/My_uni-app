@@ -1,55 +1,53 @@
 <template>
 	<view class="detele-box">
-		<view>
-			<!-- 头部 -->
-			<view class="detele-header uni-flex">
-				<!-- 头像 -->
-				<view class="avtar">
-					<image :src="item.avtar_image" mode="scaleToFill"></image>
-					<text>{{item.avtar_name}}</text>
-				</view>
-				<!-- 关注 和 关闭 -->
-				<view class="focus-box">
-					<view class="focus" @tap="focusChange(item.is_focus)">
-						<text :class="[{'icon-jia': !item.is_focus},{'icon-duigou': item.is_focus},'iconfont']"></text>
-						<text>{{item.is_focus?'已关注':'关注'}}</text>
-					</view>
-					<!-- 关闭 -->
-					<text class="iconfont icon-error"></text>
-				</view>
+		<!-- 头部 -->
+		<view class="detele-header uni-flex">
+			<!-- 头像 -->
+			<view class="avtar">
+				<image :src="itemList.avtar_image" mode="scaleToFill"></image>
+				<text>{{itemList.avtar_name}}</text>
 			</view>
-			<!-- 内容 -->
-			<view class="detele-content">
-				<view>{{item.detele_title}}</view>
-				<image :src="item.detele_image" mode="scaleToFill"></image>
-				<template v-if="item.type == 'video'">
-					<view class="play-box iconfont icon-bofang"></view>
-					<view class="play-detele">
-						<text class="iconfont icon-yanjing"></text>
-						<text>{{item.play_num}}&nbsp;次播放&nbsp;{{item.play_long}}</text>
-					</view>
-				</template>
+			<!-- 关注 和 关闭 -->
+			<view class="focus-box">
+				<view class="focus" @tap="focusChange(itemList.is_focus)">
+					<text :class="[{'icon-jia': !itemList.is_focus},{'icon-duigou': itemList.is_focus},'iconfont']"></text>
+					<text>{{itemList.is_focus?'已关注':'关注'}}</text>
+				</view>
+				<!-- 关闭 -->
+				<text class="iconfont icon-error"></text>
 			</view>
-			<!-- 底部 -->
-			<view class="detele-bottom uni-flex">
-				<!-- 评价 -->
-				<view class="bottom-evaluate">
-					<text :class="[{'active': item.evaluate_num.index == 1},'iconfont icon-weixiao']" @tap="evaluate('good')">
-						<text>{{item.evaluate_num.good_num}}</text>
-					</text>
-					<text :class="[{'active': item.evaluate_num.index == 2},'iconfont icon-ku']" @tap="evaluate('bad')">
-						<text>{{item.evaluate_num.bad_num}}</text>
-					</text>
+		</view>
+		<!-- 内容 -->
+		<view class="detele-content">
+			<view>{{itemList.detele_title}}</view>
+			<image :src="itemList.detele_image" mode="scaleToFill"></image>
+			<template v-if="itemList.type == 'video'">
+				<view class="play-box iconfont icon-bofang"></view>
+				<view class="play-detele">
+					<text class="iconfont icon-yanjing"></text>
+					<text>{{itemList.play_num}}&nbsp;次播放&nbsp;{{itemList.play_long}}</text>
 				</view>
-				<!-- 分享 -->
-				<view class="bottom-share">
-					<text class="iconfont icon-xiaoxi">
-						<text>{{item.new_num}}</text>
-					</text>
-					<text class="iconfont icon-fenxiang">
-						<text>{{item.share_num}}</text>
-					</text>
-				</view>
+			</template>
+		</view>
+		<!-- 底部 -->
+		<view class="detele-bottom uni-flex">
+			<!-- 评价 -->
+			<view class="bottom-evaluate">
+				<text :class="[{'active': itemList.evaluate_num.index == 1},'iconfont icon-weixiao']" @tap="evaluate('good')">
+					<text>{{itemList.evaluate_num.good_num}}</text>
+				</text>
+				<text :class="[{'active': itemList.evaluate_num.index == 2},'iconfont icon-ku']" @tap="evaluate('bad')">
+					<text>{{itemList.evaluate_num.bad_num}}</text>
+				</text>
+			</view>
+			<!-- 分享 -->
+			<view class="bottom-share">
+				<text class="iconfont icon-xiaoxi">
+					<text>{{itemList.new_num}}</text>
+				</text>
+				<text class="iconfont icon-fenxiang">
+					<text>{{itemList.share_num}}</text>
+				</text>
 			</view>
 		</view>
 	</view>
@@ -65,6 +63,14 @@
 			index: {
 				default: Number
 			}
+		},
+		data() {
+			return {
+				itemList: []
+			}
+		},
+		created() {
+			this.itemList = this.item
 		},
 		methods: {
 			// 关注点击事件
@@ -99,12 +105,7 @@
 <style lang="scss" scoped>
 	.detele-box {
 		border-bottom: 1px solid #d4d4d4;
-		&:last-of-type {
-			border-bottom: 0;
-		}
-		>view {
-			padding: 20upx 20upx 0;
-		}
+		padding: 20upx 20upx 0;
 		// 头部
 		.detele-header {
 			justify-content: space-between;

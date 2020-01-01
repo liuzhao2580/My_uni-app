@@ -1,27 +1,25 @@
 <template>
-	<view class="index">
+	<view class="uni-tab-bar">
 		<!-- 滚动的导航栏 tab -->
 		<swiperTab :tabBars="tabBars" :tabIndex="tabIndex" @tabber_tap="tabber_tap"/>
 		<!-- 内容 -->
-		<view class="uni-tab-bar">
-			<swiper :current="tabIndex" class="swiper-box" :style="{height: swiper_Height + 'px'}" @change="swiper_change">
-				<swiper-item v-for="(items,index) in newsList" :key="index">
-					<scroll-view scroll-y class="list" @scrolltolower="load_More(index)">
-						<template v-if="items.list.length">
-							<!-- 内容 -->
-							<block v-for="(item,index1) in items.list" :key="index1">
-								<indexList :item="item" :index="index1"/>
-							</block>
-							<!-- 上拉加载更多 -->
-							<loadMore :loadText="items.loadText"/>
-						</template>
-						<template v-else>
-							<noThing />
-						</template>
-					</scroll-view>
-				</swiper-item>
-			</swiper>
-		</view>
+		<swiper :current="tabIndex" class="swiper-box" :style="{height: swiper_Height + 'px'}" @change="swiper_change">
+			<swiper-item v-for="(items,index) in newsList" :key="index">
+				<scroll-view scroll-y class="list" @scrolltolower="load_More(index)">
+					<template v-if="items.list.length">
+						<!-- 内容 -->
+						<block v-for="(item,index1) in items.list" :key="index1">
+							<indexList :item="item" :index="index1"/>
+						</block>
+						<!-- 上拉加载更多 -->
+						<loadMore :loadText="items.loadText"/>
+					</template>
+					<template v-else>
+						<noThing />
+					</template>
+				</scroll-view>
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 
@@ -150,13 +148,9 @@
 			}
 		},
 		onLoad() {
-			uni.getSystemInfo({
-			    success: (res) => {
-					// 用来计算 当前屏幕的高度
-					let height = res.windowHeight - uni.upx2px(100) - 1
-			        this.swiper_Height = height
-			    }
-			});
+			// 用来计算 当前屏幕的高度
+			let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 1
+			this.swiper_Height = height
 		},
 		// 监听原生标题栏搜索输入框的点击事件
 		onNavigationBarSearchInputClicked() {
