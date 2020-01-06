@@ -15,7 +15,7 @@
 						},
 						"buttons": [
 							{
-								"color": "#f0e798",
+								"color": "#ffe934",
 								"float": "left",
 								"fontSize": "26px",
 								"fontSrc": "/static/iconfont/iconfont.ttf",
@@ -35,7 +35,11 @@
 		}
 	    ,{
             "path" : "pages/tabbar/dynamic/dynamic",
-            "style" : {}
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
         }
         ,{
             "path" : "pages/tabbar/news/news",

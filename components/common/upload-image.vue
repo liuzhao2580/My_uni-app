@@ -41,6 +41,7 @@ export default {
 		// 删除选中的图片
 		delete_image(index) {
 			this.imageList.splice(index, 1);
+			this.$emit("upload_image", this.imageList)
 		},
 		chooseImage: async function() {
 			// #ifdef APP-PLUS
@@ -66,6 +67,7 @@ export default {
 				count: this.imageList.length + this.count[this.countIndex] > 9 ? 9 - this.imageList.length : this.count[this.countIndex],
 				success: res => {
 					this.imageList = this.imageList.concat(res.tempFilePaths);
+					this.$emit("upload_image", this.imageList)
 				},
 				fail: err => {
 					// #ifdef APP-PLUS
